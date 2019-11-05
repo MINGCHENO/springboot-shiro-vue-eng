@@ -66,7 +66,7 @@ const permission = {
           //否则需要通过以下方法来筛选出本角色可用的路由
           accessedRouters = filterAsyncRouter(asyncRouterMap, menus)
         }
-        //执行设置路由的方法
+        //执行设置路由的方法,调用mutations中的getter,setter方法
         commit('SET_ROUTERS', accessedRouters)
         resolve()
       })

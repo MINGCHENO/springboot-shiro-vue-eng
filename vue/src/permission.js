@@ -4,6 +4,7 @@ import NProgress from 'nprogress' // Progress 进度条
 import 'nprogress/nprogress.css' // Progress 进度条样式
 import {getToken} from '@/utils/auth' // 验权
 const whiteList = ['/login', '/404'] //白名单,不需要登录的路由
+/*Vue.beforeEach(function(to,form,next){}) 在跳转之前执行*/
 router.beforeEach((to, from, next) => {
   NProgress.start()
   if (getToken()) {
@@ -29,6 +30,7 @@ router.beforeEach((to, from, next) => {
     NProgress.done() // 结束Progress
   }
 })
+/*Vue.afterEach(function(to,form))  在跳转之后判断*/
 router.afterEach(() => {
   NProgress.done() // 结束Progress
 })

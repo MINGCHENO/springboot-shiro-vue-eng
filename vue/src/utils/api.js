@@ -1,14 +1,16 @@
+/*引入axios和qs*/
 import axios from 'axios'
 import {Message, MessageBox} from 'element-ui'
 import {getToken} from '@/utils/auth'
 import store from '../store'
 // 创建axios实例
 const service = axios.create({
-  baseURL: process.env.BASE_URL, // api的base_url
-  timeout: 15000                  // 请求超时时间2
+  baseURL: process.env.BASE_URL, // api的base_url,绑定开发模式
+  timeout: 15000                  // 请求超时时间2,设置全局超时时间
 })
-// request拦截器
+// request路由拦截器
 service.interceptors.request.use(config => {
+  /*判断token是否存在*/
   return config
 }, error => {
   // Do something with request error
@@ -17,6 +19,7 @@ service.interceptors.request.use(config => {
 })
 // respone拦截器
 service.interceptors.response.use(
+  /*处理响应数据*/
   response => {
     const res = response.data;
     if (res.code == '1000') {
